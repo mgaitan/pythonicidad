@@ -16,16 +16,20 @@ No da igual cualquier lenguaje
 
 .. epigraph::
 
-    A language that doesn't affect the way you think about programming, is not worth knowing
+    Un lenguaje que no afecta tu manera de pensar sobre la programación,
+    no merece ser aprendido.
+
 
     -- Alan Perlis, Epigrams on Programming
 
 -----
 
-Que los afecte *pythonicamente*
---------------------------------
+:data-y: r1000
 
-Esto
+*python* afecta, para bien
+--------------------------
+
+Así se itera en muchos lenguajes
 
 .. code:: c
 
@@ -67,7 +71,6 @@ Al palo
 
    -- Tim Peters, The Zen of Python
 
-
 --------
 
 El Zen
@@ -77,25 +80,26 @@ El Zen
 
     >>> import this
 
-- No es sólo un huevo de pascua
-- Es una guia filosófica de la pythonicidad
+No es sólo un *huevo de pascua*
+
+**Es la guía filosófica de la pythonicidad**
 
 ------
 
 Por qué programar *pythónicamente*
 -----------------------------------
 
-- mantenible
 - eficiencia y eficacia
 - consistencia
 - comunicación
+- aprendizaje
 
 ------
 
 PEP8
 ----
 
-Guía de estilo de codificación.
+la **guía** de estilo de codificación.
 
 .. epigraph::
 
@@ -105,32 +109,41 @@ Guía de estilo de codificación.
 
 ------
 
-Pero...
---------
+Atenti...
+----------
 
-- Special cases aren't special enough to break the rules.
-  (Although practicality beats purity.)
+- *Although practicality beats purity.*
 
-  - Ejemplo: 79 caracteres. Really?
+   - Priorizar el estilo preexistente.
+   - 79 caracteres. Really?
 
-- flake8 FTW! (en el editor o como VCS hook)
+- flake8 (pep8.py + pyflakes) FTW! (en el editor o como VCS hook)
 
 ------
 
-Imports
+Otras herramientas pythonistas
+-------------------------------
+
+- virtualenv / virtualenvwrapper
+- sphinx
+- readthedocs.org
+- tu *testsrunner* favorito (nose + progressive ?)
+
 -------
+
+Para los exquisitos: imports
+-----------------------------
 
 * uno por linea al principio del archivo
 * no usar ``from module import *``
-* primero imports de stdlib
+* primero imports de ``stdlib``
 * segundo paquetes de terceros
 * tercero paquetes propios
-* ordenados por largo
 
 -----
 
-Ducktyping
-----------
+Algunos conceptos: Ducktyping
+-----------------------------
 
 *Es más fácil pedir perdón que pedir permiso*
 
@@ -151,7 +164,59 @@ Ducktyping
 - Los tipos de excepciones deben se explícitos
   (*Errors should never pass silently.*)
 
+-------
+
+getter y setters
+----------------
+
+.. epigraph::
+
+
+    Lo triste es que esta pobre gente trabajó mucho más de lo necesario, para producir mucho más código del necesario, que funciona mucho más lento que el código python idiomático equivalente.
+
+    -- Phillip J. Eby en `Python no es Java <http://dirtsimple.org/2004/12/python-is-not-java.html>`_
+
+No se hacen falta
+
+.. code::
+
+    x1 = p.get_x()      # buuh
+    p.set_x(x1)
+
+    x1 = p.x
+    p.x = x1
+
+-----
+
+- Cuando de verdad hacen falta, se pueden definir con ``property``
+
+.. code:: python
+
+    @property
+    def edad(self):
+        return (date.today() - self.fecha_nacimiento).days / 365
+
+
 --------
+
+Condiciones
+
+
+.. code:: python
+
+    if x > 0 and x < 100:       # buuh
+        ...
+
+    if 0 < x < 100:
+        ...
+
+    if x == 0 or x == 2 or x == 4:
+        ....
+
+    if x in (0, 2, 4):
+
+
+-----
 
 Expresiones condicionales (operador ternario)
 
@@ -170,21 +235,17 @@ Expresiones condicionales (operador ternario)
 Algunos *refactors*
 --------------------
 
-------
-
-
 Unir cadenas
 
 .. code:: python
 
-    names = ['x-ip', 'facundobatista', 'nessita', 'tin_nqn']
+    names = ['x-ip', 'facundobatista', 'nessita', 'lipe_p']
 
     s = names[0]
     for name in names[1:]:
         s += ', ' + name
-    print s
 
-    print ', '.join(names)
+    s = ', '.join(names)
 
 
 ----
@@ -195,11 +256,15 @@ Packing/Unpacking
 
     p = u'Martín', u'Gaitán', 31
 
-    fname = p[0]
+    fname = p[0]        # buuhh
     lname = p[1]
     age = p[2]
 
     fname, lname, age = p
+
+.. note::
+
+    en python 3 el unpacking es mucho más poderoso
 
 
 -----
@@ -211,7 +276,7 @@ Packing/Unpacking 2
     def fibonacci(n):
         x, y = 0, 1
         for i in xrange(n):
-            yield x
+            yield x             # btw, yield
             x, y = y, x + y
 
 
@@ -221,59 +286,16 @@ No muevas los datos innecesariamente
 
 Construir diccionarios desde secuencias
 
-
 .. code:: python
 
     names = ['raymond', 'rachel', 'matthew']
     colors = ['red', 'green', 'blue']
-    for
-
 
     d = dict(zip(names, colors))
     {'matthew': 'blue', 'rachel': 'green', 'raymond': 'red'}
 
 
-----
-
-Evitá las *banderas*
-
-.. code:: python
-
-    def find(seq, target):
-        found = False
-        for i, value in enumerate(seq):
-            if value == tgt:
-                found = True
-                break
-        if not found:
-            return -1
-        else:
-            return i
-
-    def find(seq, target):
-        for i, value in enumerate(seq):
-            if value == tgt:
-                return i
-        return -1
-
 ---------
-
-Llamar función hasta un resultado sentinela
-
-.. code:: python
-
-    blocks = []
-    while True:
-        block = f.read(32)
-        if block == '':
-            break
-        blocks.append(block)
-
-    blocks = []
-    for block in iter(partial(f.read, 32), ''):
-        blocks.append(block)
-
---------
 
 La legibilidad cuenta: usá los kwargs
 
@@ -302,7 +324,7 @@ La legibilidad cuenta: namedtuple
         TestResults(failed=0, attempted=4)
 
 
-``collections`` está buenísimo
+``collections`` tiene estructuras buenísimas
 
 ---------
 
@@ -340,7 +362,10 @@ Contextos: sentencia ``with``
     >>> with tag("h1"):
     ...    print("foo")
 
+.. note::
 
+    py3 tiene ContextDecorator que es una clase que funciona como
+    decorador o administrador de contexto.
 
 ---------
 
@@ -375,17 +400,54 @@ Listas por comprehensión / Expresiones generadoras
 
     sum(i**2 for i in xrange(10) if i % 2 == 0)
 
-.. no abusar de los oneliner
-.. regla: una línea == una oración.
+.. note::
 
+   - no abusar de los oneliner
+   - regla: una línea == una oración.
+
+--------
+
+Conjuntos
 ---------
 
-Ultimos consejos
+Son muy útiles!
+
+.. code:: python
+
+    pythonistas_cordoba = ['gaucho', 'rafa', 'jairo', 'tin']
+    incubadora = ['jairo', 'tin', 'tomas']
+
+
+--------
+
+Méotod
+
+
+-----
+
+Para discutir después...
+
+.. code:: python
+
+    blocks = []
+    while True:
+        block = f.read(32)
+        if block == '':
+            break
+        blocks.append(block)
+
+    blocks = []
+    for block in iter(partial(f.read, 32), ''):
+        blocks.append(block)
+
+--------
+
+últimos consejos
 -----------------
 
-- Conocé la stdlib.
-- Lee código
-- ``itertools.product(('lee', 'escribi'), ('blogs', 'documentacion'))``
+- Conocé la **stdlib**.
+- Leé código
+- ``itertools.product(('lee', 'escribí'), ('blogs', 'documentación', 'pyar'))``
 - Github no es sólo hosting git.
 
     - seguir el trabajo de grosos
