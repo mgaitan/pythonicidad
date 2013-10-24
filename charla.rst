@@ -1,27 +1,33 @@
-La pythonicidad al palo
-=========================
-
-:autor: Martín Gaitán
+:title: La pythonicidad al palo
+:author: Martín Gaitán
 :evento: PyCon Argentina 2013
+:css: charla.css
 
+--------
 
-.. img:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Baltimore_Aquarium_-_Morelia_viridis.jpg/764px-Baltimore_Aquarium_-_Morelia_viridis.jpg
+La pythonicidad al palo
 
-qué es *pythonico*
-------------------
+.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Baltimore_Aquarium_-_Morelia_viridis.jpg/764px-Baltimore_Aquarium_-_Morelia_viridis.jpg
 
+--------
+
+No da igual cualquier lenguaje
+-------------------------------
 
 .. epigraph::
 
     A language that doesn't affect the way you think about programming, is not worth knowing
 
-     -- Alan Perlis, Epigrams on Programming
+    -- Alan Perlis, Epigrams on Programming
 
+-----
 
+Que los afecte *pythonicamente*
+--------------------------------
 
 Esto
 
-.. code-block:: c
+.. code:: c
 
     for (i=0; i < mylist_length; i++) {
        do_something(mylist[i]);
@@ -29,9 +35,9 @@ Esto
 
 -----
 
-Ay!
+Buuuh!
 
-.. code-block:: python
+.. code:: python
 
     i = 0
     while i < len(mylist):
@@ -40,9 +46,9 @@ Ay!
 
 ------
 
-Dale que va queriendo
+Ok, dale que va queriendo
 
-.. code-block:: python
+.. code:: python
 
     for i in range(len(mylist)):
        do_something(mylist[i])
@@ -51,7 +57,7 @@ Dale que va queriendo
 
 Al palo
 
-.. code-block:: python
+.. code:: python
 
     for element in mylist:
        do_something(element)
@@ -62,16 +68,19 @@ Al palo
    -- Tim Peters, The Zen of Python
 
 
+--------
+
 El Zen
 -------
 
-.. code-block:: python
+.. code:: python
 
     >>> import this
 
 - No es sólo un huevo de pascua
 - Es una guia filosófica de la pythonicidad
 
+------
 
 Por qué programar *pythónicamente*
 -----------------------------------
@@ -81,6 +90,7 @@ Por qué programar *pythónicamente*
 - consistencia
 - comunicación
 
+------
 
 PEP8
 ----
@@ -93,6 +103,7 @@ Guía de estilo de codificación.
 
     -- Abelson & Sussman, Structure and Interpretation of Computer Programs
 
+------
 
 Pero...
 --------
@@ -104,7 +115,7 @@ Pero...
 
 - flake8 FTW! (en el editor o como VCS hook)
 
-
+------
 
 Imports
 -------
@@ -123,7 +134,7 @@ Ducktyping
 
 *Es más fácil pedir perdón que pedir permiso*
 
-.. code-block:: python
+.. code:: python
 
     def f(animal):
         if isinstance(animal, Duck):
@@ -138,13 +149,13 @@ Ducktyping
             print("%s can't quack" % animal)
 
 - Los tipos de excepciones deben se explícitos
-  (*"los errores no deben pasar desapercibidos"*)
+  (*Errors should never pass silently.*)
 
 --------
 
 Expresiones condicionales (operador ternario)
 
-.. code-block:: python
+.. code:: python
 
     if condition:
         a = x
@@ -153,13 +164,18 @@ Expresiones condicionales (operador ternario)
 
     a = x if condition else y
 
+------
+
 
 Algunos *refactors*
 --------------------
 
+------
+
+
 Unir cadenas
 
-.. code-block:: python
+.. code:: python
 
     names = ['x-ip', 'facundobatista', 'nessita', 'tin_nqn']
 
@@ -175,7 +191,7 @@ Unir cadenas
 
 Packing/Unpacking
 
-.. code-block:: python
+.. code:: python
 
     p = u'Martín', u'Gaitán', 31
 
@@ -188,26 +204,9 @@ Packing/Unpacking
 
 -----
 
-Construir diccionarios desde secuencias
-
-
-.. code-block:: python
-
-    names = ['raymond', 'rachel', 'matthew']
-    colors = ['red', 'green', 'blue']
-    for
-
-
-    d = dict(zip(names, colors))
-    {'matthew': 'blue', 'rachel': 'green', 'raymond': 'red'}
-
-
-
--------
-
 Packing/Unpacking 2
 
-.. code-block:: python
+.. code:: python
 
     def fibonacci(n):
         x, y = 0, 1
@@ -220,9 +219,25 @@ No muevas los datos innecesariamente
 
 ------
 
+Construir diccionarios desde secuencias
+
+
+.. code:: python
+
+    names = ['raymond', 'rachel', 'matthew']
+    colors = ['red', 'green', 'blue']
+    for
+
+
+    d = dict(zip(names, colors))
+    {'matthew': 'blue', 'rachel': 'green', 'raymond': 'red'}
+
+
+----
+
 Evitá las *banderas*
 
-.. code-block:: python
+.. code:: python
 
     def find(seq, target):
         found = False
@@ -245,7 +260,7 @@ Evitá las *banderas*
 
 Llamar función hasta un resultado sentinela
 
-.. code-block:: python
+.. code:: python
 
     blocks = []
     while True:
@@ -262,7 +277,7 @@ Llamar función hasta un resultado sentinela
 
 La legibilidad cuenta: usá los kwargs
 
-.. code-block:: python
+.. code:: python
 
     twitter_search('#PyconAr', False, 20, True)
 
@@ -273,18 +288,18 @@ La legibilidad cuenta: usá los kwargs
 
 La legibilidad cuenta: namedtuple
 
-.. code-block:: python
 
+.. code:: python
 
->>> doctest.testmod()
-    (0, 4)
+    >>> doctest.testmod()
+        (0, 4)
 
-    from collections import namedtuple
-    TestResults = namedtuple('TestResults',
-        ['failed', 'attempted'])
+        from collections import namedtuple
+        TestResults = namedtuple('TestResults',
+            ['failed', 'attempted'])
 
->>> doctest.testmod()
-    TestResults(failed=0, attempted=4)
+    >>> doctest.testmod()
+        TestResults(failed=0, attempted=4)
 
 
 ``collections`` está buenísimo
@@ -294,7 +309,7 @@ La legibilidad cuenta: namedtuple
 Decoradores: factorizá lo administrativo
 
 
-.. code-block:: python
+.. code:: python
 
     def web_lookup(url, saved={}):
         if url in saved:
@@ -314,7 +329,7 @@ Contextos: sentencia ``with``
 - Patrón: ``pre()  X()  post()``
 - Fáciles con ``contextlib.contextmanager``
 
-.. code-block:: python
+.. code:: python
 
     @contextmanager
     def tag(name):
@@ -331,7 +346,7 @@ Contextos: sentencia ``with``
 
 Bucles anidados
 
-.. code-block:: python
+.. code:: python
 
     combs = []
     for a in x:
@@ -347,7 +362,7 @@ Bucles anidados
 
 Listas por comprehensión / Expresiones generadoras
 
-.. code-block:: python
+.. code:: python
 
     result = []
     for i in range(10):
