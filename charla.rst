@@ -3,6 +3,7 @@
 :evento: PyCon Argentina 2013
 :css: charla.css
 
+
 --------
 
 La pythonicidad al palo
@@ -12,6 +13,7 @@ La pythonicidad al palo
    :target: http://commons.wikimedia.org/wiki/File:Baltimore_Aquarium_-_Morelia_viridis.jpg
 
 Martin Gaitán / `@tin_nqn_ <http://twitter.com/tin_nqn_>`_  / #PyconAr2013
+
 
 --------
 
@@ -208,7 +210,7 @@ getter y setters
 
     -- Phillip J. Eby, `Python no es Java <http://dirtsimple.org/2004/12/python-is-not-java.html>`_
 
-La mayoría de las veces no se hacen falta
+La mayoría de las veces no hacen falta
 
 .. code::
 
@@ -231,6 +233,7 @@ Cuando de verdad hacen falta, se pueden definir con ``property``
         return (date.today() - self.fecha_nacimiento).days / 365
 
     >>> p.edad
+    31
 
 --------
 
@@ -343,6 +346,29 @@ Construir diccionarios desde secuencias
 
 ---------
 
+Listas por comprehensión / Expresiones generadoras
+
+.. code:: python
+
+    result = []
+    for i in range(10):
+        if i % 2 == 0:
+        s = i ** 2
+        result.append(s)
+    sum(result)
+
+    sum([i**2 for i in xrange(10) if i % 2 == 0])
+
+    sum(i**2 for i in xrange(10) if i % 2 == 0)
+
+.. note::
+
+   - no abusar de los oneliner
+   - regla: una línea == una oración.
+
+
+----
+
 La legibilidad cuenta: usá los ``kwargs``
 
 .. code:: python
@@ -356,15 +382,13 @@ La legibilidad cuenta: usá los ``kwargs``
 
 La legibilidad cuenta: ``namedtuple``
 
-
 .. code:: python
 
     >>> doctest.testmod()
         (0, 4)
 
     from collections import namedtuple
-    TestResults = namedtuple('TestResults',
-        ['failed', 'attempted'])
+    TestResults = namedtuple('TestResults', ['failed', 'attempted'])
 
     >>> doctest.testmod()
         TestResults(failed=0, attempted=4)
@@ -385,8 +409,8 @@ Son muy útiles!
     programmers = {'Jack', 'Sam', 'Susan', 'Janice'}
     managers = {'Jane', 'Jack', 'Susan', 'Zack'}
     employees = engineers | programmers | managers           # union
-    engineering_management = engineers & managers            # intersection
     fulltime_management = managers - engineers - programmers # difference
+    engineering_management = engineers & managers            # intersection
 
     >>> engineering_management
     set(['Jane', 'Jack'])
@@ -448,28 +472,6 @@ Bucles anidados
 
 ``itertools`` es groso!
 
-----------
-
-Listas por comprehensión / Expresiones generadoras
-
-.. code:: python
-
-    result = []
-    for i in range(10):
-        if i % 2 == 0:
-        s = i ** 2
-        result.append(s)
-    sum(result)
-
-    sum([i**2 for i in xrange(10) if i % 2 == 0])
-
-    sum(i**2 for i in xrange(10) if i % 2 == 0)
-
-.. note::
-
-   - no abusar de los oneliner
-   - regla: una línea == una oración.
-
 --------
 
 Para discutir después...
@@ -487,27 +489,40 @@ Para discutir después...
     for block in iter(partial(f.read, 32), ''):
         blocks.append(block)
 
+.. note::
+
+    un código demasiado avanzado puede ser críptico para otros programadores
+    es elegante pero no más rápido. Al menos requiere un comentario
+
 --------
 
 :data-scale: 0.2
 
-Últimos consejos
------------------
+Consejos finales
+----------------
 
-- Conocé las estructuras de datos builtin!
-- Conocé la **stdlib**: usá lo bueno (mucho pero no todo)
-- leé y escribí: código, blog, **documentación**, mails de pyar...
+- Conocé las las estructuras y la **stdlib** (usá lo bueno)
+- Leé y escribí: código, blogs, **doc**...
 - No reinventes la rueda antes de buscar en PyPi
-- Github no es sólo hosting git.
+- Github no es sólo hosting git:
 
   - seguir el trabajo de grosos
   - *trendings*: que hay de nuevo viejo
   - comunicación en contexto.
 
+-----
+
+Y aprovechá PyAr
+=================
+
+| Participá de la lista
+| ¡**PyCamps!**
+| Y queremos tu charla en la PyCon 2014!
+
+
 ---------
 
-
-:data-scale: 0.2
+|
 
 Muchas gracias
-
+==============

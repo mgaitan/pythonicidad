@@ -1,4 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville);
+
+// from google fonts
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Libre Baskerville'), local('LibreBaskerville-Regular'), url(img/LibreBaskerville.woff) format('woff');
+}
 
 body {
     font-size: 200%;
