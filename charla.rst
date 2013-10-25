@@ -6,8 +6,12 @@
 --------
 
 La pythonicidad al palo
+========================
 
-.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Baltimore_Aquarium_-_Morelia_viridis.jpg/764px-Baltimore_Aquarium_-_Morelia_viridis.jpg
+.. image:: img/764px-Baltimore_Aquarium_-_Morelia_viridis.jpg
+   :target: http://commons.wikimedia.org/wiki/File:Baltimore_Aquarium_-_Morelia_viridis.jpg
+
+Martin Gaitán / `@tin_nqn_ <http://twitter.com/tin_nqn_>`_  / #PyconAr2013
 
 --------
 
@@ -24,10 +28,11 @@ No da igual cualquier lenguaje
 
 -----
 
-:data-y: r1000
+*Python* nos afecta
+-------------------
 
-*python* afecta, para bien
---------------------------
+para bien
+---------
 
 Así se itera en muchos lenguajes
 
@@ -39,7 +44,10 @@ Así se itera en muchos lenguajes
 
 -----
 
-Buuuh!
+:data-y: r1400
+
+
+Esto es "python"
 
 .. code:: python
 
@@ -48,18 +56,22 @@ Buuuh!
        do_something(mylist[i])
        i += 1
 
-------
+Buuuh!
 
-Ok, dale que va queriendo
+------
 
 .. code:: python
 
     for i in range(len(mylist)):
        do_something(mylist[i])
 
+
+Ok, dale que va queriendo
+
+
 ------
 
-Al palo
+Esto es Python
 
 .. code:: python
 
@@ -73,6 +85,9 @@ Al palo
 
 --------
 
+:data-rotate: 90
+:data-y: r1400
+
 El Zen
 -------
 
@@ -82,17 +97,19 @@ El Zen
 
 No es sólo un *huevo de pascua*
 
-**Es la guía filosófica de la pythonicidad**
+Es la **guía filosófica** de la *pythonicidad*
 
 ------
 
-Por qué programar *pythónicamente*
------------------------------------
+Por qué programar *pythónicamente* ?
+-------------------------------------
 
-- eficiencia y eficacia
+- eficiencia
+- eficacia
 - consistencia
 - comunicación
 - aprendizaje
+- elegancia (?)
 
 ------
 
@@ -109,25 +126,32 @@ la **guía** de estilo de codificación.
 
 ------
 
+:data-x: r-1000
+
 Atenti...
 ----------
 
 - *Although practicality beats purity.*
 
-   - Priorizar el estilo preexistente.
-   - 79 caracteres. Really?
+  - Priorizar el acuerdo del equipo
+  - Respetar el estilo preexistente en el proyecto
+  - 79 caracteres. Really?
 
-- flake8 (pep8.py + pyflakes) FTW! (en el editor o como VCS hook)
+.. tip::
+
+    flake8 FTW! (en el editor o como VCS hook)
 
 ------
+
+:data-rotate: r90
+:data-y: r1400
 
 Otras herramientas pythonistas
 -------------------------------
 
-- virtualenv / virtualenvwrapper
-- sphinx
-- readthedocs.org
-- tu *testsrunner* favorito (nose + progressive ?)
+- virtualenv & virtualenvwrapper
+- sphinx & readthedocs.org
+- tu *testsrunner* favorito (nose ?) y tus **tests**
 
 -------
 
@@ -138,11 +162,19 @@ Para los exquisitos: imports
 * no usar ``from module import *``
 * primero imports de ``stdlib``
 * segundo paquetes de terceros
-* tercero paquetes propios
+* luego paquetes propios
+
+.. tip::
+
+   ``pip install isort``
+
 
 -----
 
-Algunos conceptos: Ducktyping
+:data-x: r1400
+
+
+Algunos conceptos: ducktyping
 -----------------------------
 
 *Es más fácil pedir perdón que pedir permiso*
@@ -174,9 +206,9 @@ getter y setters
 
     Lo triste es que esta pobre gente trabajó mucho más de lo necesario, para producir mucho más código del necesario, que funciona mucho más lento que el código python idiomático equivalente.
 
-    -- Phillip J. Eby en `Python no es Java <http://dirtsimple.org/2004/12/python-is-not-java.html>`_
+    -- Phillip J. Eby, `Python no es Java <http://dirtsimple.org/2004/12/python-is-not-java.html>`_
 
-No se hacen falta
+La mayoría de las veces no se hacen falta
 
 .. code::
 
@@ -188,7 +220,9 @@ No se hacen falta
 
 -----
 
-- Cuando de verdad hacen falta, se pueden definir con ``property``
+:data-y: r1400
+
+Cuando de verdad hacen falta, se pueden definir con ``property``
 
 .. code:: python
 
@@ -196,11 +230,23 @@ No se hacen falta
     def edad(self):
         return (date.today() - self.fecha_nacimiento).days / 365
 
+    >>> p.edad
 
 --------
 
-Condiciones
+:data-x: r1400
+:data-scale: 0.1
 
+Pythonicemosnos un poco
+========================
+
+
+-----
+
+:data-scale: 1
+
+Condiciones
+------------
 
 .. code:: python
 
@@ -209,6 +255,10 @@ Condiciones
 
     if 0 < x < 100:
         ...
+
+Otra
+
+.. code:: python
 
     if x == 0 or x == 2 or x == 4:
         ....
@@ -231,10 +281,6 @@ Expresiones condicionales (operador ternario)
 
 ------
 
-
-Algunos *refactors*
---------------------
-
 Unir cadenas
 
 .. code:: python
@@ -250,7 +296,7 @@ Unir cadenas
 
 ----
 
-Packing/Unpacking
+Packing/Unpacking (asignación múltiple)
 
 .. code:: python
 
@@ -297,18 +343,18 @@ Construir diccionarios desde secuencias
 
 ---------
 
-La legibilidad cuenta: usá los kwargs
+La legibilidad cuenta: usá los ``kwargs``
 
 .. code:: python
 
-    twitter_search('#PyconAr', False, 20, True)
+    twitter_search('#PyconAr2013', False, 20, True)
 
-    twitter_search('#PyconAr', retweets=False, numtweets=20,
-        popular=True)
+    twitter_search('#PyconAr', retweets=False,
+                   numtweets=20, popular=True)
 
 --------
 
-La legibilidad cuenta: namedtuple
+La legibilidad cuenta: ``namedtuple``
 
 
 .. code:: python
@@ -316,9 +362,9 @@ La legibilidad cuenta: namedtuple
     >>> doctest.testmod()
         (0, 4)
 
-        from collections import namedtuple
-        TestResults = namedtuple('TestResults',
-            ['failed', 'attempted'])
+    from collections import namedtuple
+    TestResults = namedtuple('TestResults',
+        ['failed', 'attempted'])
 
     >>> doctest.testmod()
         TestResults(failed=0, attempted=4)
@@ -327,6 +373,25 @@ La legibilidad cuenta: namedtuple
 ``collections`` tiene estructuras buenísimas
 
 ---------
+
+Conjuntos
+---------
+
+Son muy útiles!
+
+.. code:: python
+
+    engineers = {'John', 'Jane', 'Jack', 'Janice'}
+    programmers = {'Jack', 'Sam', 'Susan', 'Janice'}
+    managers = {'Jane', 'Jack', 'Susan', 'Zack'}
+    employees = engineers | programmers | managers           # union
+    engineering_management = engineers & managers            # intersection
+    fulltime_management = managers - engineers - programmers # difference
+
+    >>> engineering_management
+    set(['Jane', 'Jack'])
+
+----
 
 Decoradores: factorizá lo administrativo
 
@@ -407,24 +472,6 @@ Listas por comprehensión / Expresiones generadoras
 
 --------
 
-Conjuntos
----------
-
-Son muy útiles!
-
-.. code:: python
-
-    pythonistas_cordoba = ['gaucho', 'rafa', 'jairo', 'tin']
-    incubadora = ['jairo', 'tin', 'tomas']
-
-
---------
-
-Méotod
-
-
------
-
 Para discutir después...
 
 .. code:: python
@@ -442,19 +489,25 @@ Para discutir después...
 
 --------
 
-últimos consejos
+:data-scale: 0.2
+
+Últimos consejos
 -----------------
 
-- Conocé la **stdlib**.
-- Leé código
-- ``itertools.product(('lee', 'escribí'), ('blogs', 'documentación', 'pyar'))``
+- Conocé las estructuras de datos builtin!
+- Conocé la **stdlib**: usá lo bueno (mucho pero no todo)
+- leé y escribí: código, blog, **documentación**, mails de pyar...
+- No reinventes la rueda antes de buscar en PyPi
 - Github no es sólo hosting git.
 
-    - seguir el trabajo de grosos
-    - trendings: que hay de nuevo viejo
-    - comunicación en contexto.
-
+  - seguir el trabajo de grosos
+  - *trendings*: que hay de nuevo viejo
+  - comunicación en contexto.
 
 ---------
 
+
+:data-scale: 0.2
+
 Muchas gracias
+
