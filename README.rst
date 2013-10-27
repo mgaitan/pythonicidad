@@ -2,8 +2,9 @@ La pythonicidad al palo
 =======================
 
 :autor: Martín Gaitán
-:evento: PyCon Argentina 2013
-:fecha: 25-10-2013
+:evento: `PyCon Argentina 2013 <http://ar.pycon.org/2013/>`_
+:fecha: Viernes 25 de octubre, 2013
+:lugar: Rosario, Argentina
 :presentación: `ver online <http://mgaitan.github.io/pythonicidad/html/index.html>`_
 
 ¿Qué significa que un código sea "pythónico"?
