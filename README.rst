@@ -9,7 +9,7 @@ La pythonicidad al palo
 
 ¿Qué significa que un código sea "pythónico"?
 
-Una charla sobre python idiomático: características de este lenguaje para expresar de forma simple, elegante y potente.
+Una charla sobre python idiomático: características, consejos y prácticas recomendadas de este lenguaje para expresar de forma simple, elegante y potente.
 
 
 Para generar las slides
